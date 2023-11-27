@@ -22,6 +22,7 @@
         let score = 0;
         let wicket = 0;
         let ballWaiseResult = [];
+        let hit = 0;
 
         // function addOne() {
         //     score += 1;
@@ -29,21 +30,14 @@
         // };
 
         function addScore(num){
-            if(wicket < 10){
-                ballWaiseResult.push(num);
-                score += num;
-                rootElement.render(<App/>);
-                // console.log(ballWaiseResult);
-            }
+          hit = num;
+          rootElement.render(<App/>);
+            
         }
 
         function addWicket(){
-            if(wicket < 10){
-                ballWaiseResult.push("W");
-                wicket += 1;
-                rootElement.render(<App/>);
-                // console.log(ballWaiseResult);
-            }
+          hit = "W";
+          rootElement.render(<App/>);
         }
 
         const ScoreButtons = () => (
@@ -74,7 +68,7 @@
 
         const Form = () => (
           <form onSubmit={handleOnSubmit}>
-            <input />
+            <input value={hit}/>
             <input />
             <button>Submit</button>  
           </form>
