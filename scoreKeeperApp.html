@@ -23,6 +23,7 @@
         let wicket = 0;
         let ballWaiseResult = [];
         let hit = 0;
+        let inputRef = React.createRef();
 
         // function addOne() {
         //     score += 1;
@@ -64,14 +65,25 @@
 
           function handleOnSubmit  (event)  {
             event.preventDefault();
-            ballWaiseResult.unshift(hit);
+
+            if(hit === "W"){
+              wicket += 1;
+            }else{
+              score += hit;
+            }
+
+            ballWaiseResult.unshift(
+              <span>{`${hit}, ${inputRef.current.value}`}</span>
+            );
+            hit = 0;
+            inputRef.current.value = "";
             rootElement.render(<App/>);
           }
 
         const Form = () => (
           <form onSubmit={handleOnSubmit}>
             <input value={hit}/>
-            <input />
+            <input ref={inputRef} placeholder="Add a comment"/>
             <button>Submit</button>  
           </form>
         );
